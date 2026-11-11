@@ -36,18 +36,18 @@
 <div class="field"><label for="material">Material</label><select id="material"><option>Belum tahu / konsultasi</option><option>Multiplek</option><option>Blockboard</option><option>MDF</option><option>Lainnya</option></select></div>
 <div class="field"><label for="warna">Warna / finishing</label><input id="warna" placeholder="Contoh: hitam doff"></div>
 <div class="field full"><label for="catatan">Catatan desain</label><textarea id="catatan" placeholder="Jelaskan desain atau kebutuhan lainnya..."></textarea></div>
-</div><button class="btn primary" type="submit">Kirim Detail ke WhatsApp ↗</button><p class="hint">Sebelum digunakan, nomor WhatsApp admin perlu diisi pada bagian pengaturan di kode website.</p></form></div></div></section>
+</div><button class="btn primary" type="submit">Kirim Detail ke WhatsApp ↗</button><p class="hint">Pesanan akan dikirim langsung ke WhatsApp admin SOUNDCRAFT.</p></form></div></div></section>
 <section><div class="wrap about"><div><div class="eyebrow">SOUNDCRAFT</div><h2 style="margin:7px 0">Rancang. Sesuaikan. Nikmati.</h2><p>Custom speaker box berdasarkan kebutuhan audio dan gaya yang kamu inginkan. Hubungi kami untuk mendiskusikan konsep pesanan.</p></div><a class="btn secondary" href="#pesan">Mulai Pesan</a></div></section>
 </main>
 <footer><div class="wrap foot"><span>© <span id="year"></span> SOUNDCRAFT — Custom Speaker Box</span><span>Built for your sound.</span></div></footer>
 <script>
-const NOMOR_WA = "6282142429073"; // Nomor WhatsApp admin SOUNDCRAFT
+const NOMOR_WA = "6282142429073"; // WhatsApp admin SOUNDCRAFT (format internasional, tanpa +)
 document.getElementById("year").textContent = new Date().getFullYear();
 document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("navLinks").classList.toggle("open"));
 document.querySelectorAll("#navLinks a").forEach(a=>a.addEventListener("click",()=>document.getElementById("navLinks").classList.remove("open")));
 document.getElementById("orderForm").addEventListener("submit",function(e){
  e.preventDefault();
- if(NOMOR_WA.includes("x")){alert("Nomor WhatsApp admin belum diatur. Ganti NOMOR_WA pada bagian JavaScript.");return;}
+ if(!/^62[0-9]{8,13}$/.test(NOMOR_WA)){alert("Nomor WhatsApp admin belum valid. Periksa pengaturan nomor admin.");return;}
  const val=id=>document.getElementById(id).value.trim()||"-";
  const pesan=["Halo SOUNDCRAFT, saya ingin konsultasi/pesan speaker box custom.","","Nama: "+val("nama"),"Jenis box: "+val("jenis"),"Ukuran: "+val("ukuran"),"Speaker: "+val("speaker"),"Material: "+val("material"),"Warna/finishing: "+val("warna"),"Catatan: "+val("catatan")].join("\n");
  window.open("https://wa.me/"+NOMOR_WA+"?text="+encodeURIComponent(pesan),"_blank");
